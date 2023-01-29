@@ -11,3 +11,28 @@
   gap: 4rem;
   margin-top: 2rem;
 }
+
+.btn {
+  padding: 2.8rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.btn button {
+  padding: 0.8rem 2rem;
+  box-shadow: 2px 8px 21px -2px #777777;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #2258ae;
+  color: #fff;
+  font-size: 1.1rem;
+  border: none;
+  transition: transform 200ms ease, box-shadow 300ms ease;
+}
+
+.btn button:hover {
+  transform: translateY(5px);
+  box-shadow: none;
+}
