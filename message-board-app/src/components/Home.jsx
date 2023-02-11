@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css';
-import { collection, query, getDocs } from 'firebase/firestore';
-import { db } from '../firebase';
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { db, auth } from '../firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [postComment, setPostComment] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getPosts = async () => {
@@ -14,6 +16,10 @@ const Home = () => {
     getPosts();
   }, []);
 
+  const handleDelete = async id => {
+    await deleteDoc(doc(db, 'comment', id));
+    window.location.href = '/';
+  };
   return (
     <div className='homePage'>
       {postComment.map(comment => {
@@ -26,7 +32,10 @@ const Home = () => {
             <div className='postCommentContainer'>{comment.comment}</div>
             <div className='nameAndDeleteButton'>
               <h3>@{comment.author.username}</h3>
-              <button>Delete</button>
+
+              {comment.author.id === auth.currentUser?.uid && (
+                <button onClick={() => handleDelete(comment.id)}>Delete</button>
+              )}
             </div>
           </div>
         );
