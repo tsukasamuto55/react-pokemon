@@ -1,0 +1,16 @@
+nav {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(31, 150, 193);
+  padding: 0.8rem 1.2rem;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+nav a > svg {
+  margin-right: 4px;
+}
